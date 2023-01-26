@@ -1,7 +1,8 @@
-package com.example.wallpaper
+package com.example.wallpaper.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.wallpaper.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
