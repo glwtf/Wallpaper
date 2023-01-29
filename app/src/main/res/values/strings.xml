@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Wallpaper</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="theme_name">Theme Name</string>
 </resources>
