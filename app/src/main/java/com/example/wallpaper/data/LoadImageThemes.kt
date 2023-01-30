@@ -9,7 +9,7 @@ import com.example.wallpaper.domain.entity.Response
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 
-class LoadImageTheme {
+class LoadImageThemes {
 
     private val js = Json {
         ignoreUnknownKeys = true

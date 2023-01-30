@@ -10,13 +10,6 @@ data class Response(
     val hits: List<Hits>
 )
 {
-    @Serializable
-    class Hits(
-     val id: Int,
-     val previewURL: String,
-     val largeImageURL: String,
-     val fullHDURL: String = UNKNOWN_STRING
-    )
 
     companion object {
         const val UNKNOWN_STRING = ""
