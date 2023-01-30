@@ -17,8 +17,7 @@
         <ImageView
             android:id="@+id/iv_preview"
             android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:layout_constraintDimensionRatio="16:9"/>
+            android:layout_height="150dp"/>
 
         <TextView
             android:id="@+id/tv_theme_name"

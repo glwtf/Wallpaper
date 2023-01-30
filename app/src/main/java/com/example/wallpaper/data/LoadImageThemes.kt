@@ -37,7 +37,7 @@ class LoadImageThemes {
     companion object {
 
         private val urlDictionary = mapOf(
-            "flower" to "https://pixabay.com/api/?key=33106230-b104905cd7ff74ed17e2229af&q=flowers&image_type=photo",
+            "flower" to "https://pixabay.com/api/?key=33106230-b104905cd7ff74ed17e2229af&q=flowers&image_type=all",
             "car" to "https://pixabay.com/api/?key=33106230-b104905cd7ff74ed17e2229af&q=racing+car&image_type=photo",
             "animals" to "https://pixabay.com/api/?key=33106230-b104905cd7ff74ed17e2229af&q=jungle+animals&image_type=photo",
             "city" to "https://pixabay.com/api/?key=33106230-b104905cd7ff74ed17e2229af&q=usa+city&image_type=photo",
