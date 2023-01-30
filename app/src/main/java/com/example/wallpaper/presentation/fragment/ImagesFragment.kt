@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.wallpaper.databinding.FragmentImagesBinding
 import com.example.wallpaper.presentation.recycleview.ImageAdapter
@@ -62,11 +63,13 @@ class ImagesFragment : Fragment() {
 
     private fun setupClickListener() {
         rvAdapter.onImageItemClickListener = {
-
+            launchFragment(it.largeImageURL)
         }
     }
 
-    companion object {
-
+    private fun launchFragment(imageUrl: String) {
+        findNavController().navigate(
+            ImagesFragmentDirections.actionImagesFragmentToSingleImageFragment(imageUrl)
+        )
     }
 }

@@ -21,5 +21,17 @@
         <argument
             android:name="themeName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_imagesFragment_to_singleImageFragment"
+            app:destination="@id/singleImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleImageFragment"
+        android:name="com.example.wallpaper.presentation.fragment.SingleImageFragment"
+        android:label="fragment_single_image"
+        tools:layout="@layout/fragment_single_image" >
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
     </fragment>
 </navigation>
