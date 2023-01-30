@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.wallpaper.databinding.FragmentThemesBinding
 import com.example.wallpaper.presentation.recycleview.ThemeListAdapter
 import com.example.wallpaper.presentation.viewmodel.ThemeFragmentViewModel
@@ -19,7 +20,7 @@ class ThemesFragment : Fragment() {
 
     private var _binding : FragmentThemesBinding? = null
     private val binding : FragmentThemesBinding
-        get() = _binding ?: throw RuntimeException("FragmentMainBinding == null")
+        get() = _binding ?: throw RuntimeException("ThemesFragment == null")
 
     private lateinit var rvAdapter: ThemeListAdapter
 
@@ -56,11 +57,13 @@ class ThemesFragment : Fragment() {
 
     private fun setupClickListener() {
         rvAdapter.onThemeItemClickListener = {
-
+            launchFragment(it.themeName)
         }
     }
 
-    companion object {
-
+    private fun launchFragment(themeName: String) {
+        findNavController().navigate(
+            ThemesFragmentDirections.actionThemesFragmentToImagesFragment(themeName)
+        )
     }
 }
