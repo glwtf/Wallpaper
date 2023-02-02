@@ -10,9 +10,5 @@ interface WallpaperRepository {
 
     fun getImageList(themeName : String) : LiveData<List<Hits>> //show in imagelist fragment
 
-    fun getImage() //show in imagefragment
-
-    fun setWallpaper() //work in imagefragment
-
-    suspend fun loadThemes() //in spalsh time
+    suspend fun loadThemes(): Boolean //in spalsh time
 }

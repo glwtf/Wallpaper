@@ -27,15 +27,18 @@ class LoadImageThemes {
     suspend operator fun invoke() : List<Response> {
         val themeList = mutableListOf<Response>()
         urlDictionary.forEach { url_theme ->
-            val response = client.get(url_theme.value).body<Response>()
-            response.themeName = url_theme.key
-            themeList.add(response)
+            val response = client.get(url_theme.value)
+            val status = response.status.value
+            if (status == 200) {
+                val result = response.body<Response>()
+                result.themeName = url_theme.key
+                themeList.add(result)
+            }
         }
         return themeList
     }
 
     companion object {
-
         private val urlDictionary = mapOf(
             "flower" to "https://pixabay.com/api/?key=33106230-b104905cd7ff74ed17e2229af&q=flowers&image_type=all",
             "car" to "https://pixabay.com/api/?key=33106230-b104905cd7ff74ed17e2229af&q=racing+car&image_type=photo",

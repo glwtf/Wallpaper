@@ -3,6 +3,7 @@ package com.example.wallpaper.presentation.fragment
 import android.app.WallpaperManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.wallpaper.databinding.FragmentSingleImageBinding
 
 
@@ -41,6 +46,7 @@ class SingleImageFragment : Fragment() {
         Glide
             .with(this)
             .load(args.imageUrl)
+            .listener(glideListener())
             .into(image)
     }
 
@@ -52,7 +58,7 @@ class SingleImageFragment : Fragment() {
         setWallpaperButton.setOnClickListener {
             val bitmapImage = getBitmapFromView(imageView)
             wallpaperManager.setBitmap(bitmapImage)
-            showToast()
+            showToast("Image set as wallpaper success!")
         }
     }
 
@@ -65,8 +71,37 @@ class SingleImageFragment : Fragment() {
         return bitmap
     }
 
-    private fun showToast() {
-        Toast.makeText(activity, "Image set as wallpaper success!", Toast.LENGTH_LONG).show()
+    private fun glideListener() : RequestListener<Drawable> {
+        val processBar = binding.progressBar
+        val errorMsg = binding.tvNonInternet
+
+        return object : RequestListener<Drawable> {
+            override fun onResourceReady(
+                resource: Drawable?,
+                model: Any?,
+                target: Target<Drawable>?,
+                dataSource: DataSource?,
+                isFirstResource: Boolean
+            ): Boolean {
+                processBar.visibility = View.GONE
+                return false
+            }
+
+            override fun onLoadFailed(
+                e: GlideException?,
+                model: Any?,
+                target: Target<Drawable>?,
+                isFirstResource: Boolean
+            ): Boolean {
+                errorMsg.visibility = View.VISIBLE
+                processBar.visibility = View.GONE
+                return false
+            }
+        }
+    }
+
+    private fun showToast(msg: String) {
+        Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

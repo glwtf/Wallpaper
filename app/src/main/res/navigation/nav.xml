@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/themesFragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/themesFragment"
         android:name="com.example.wallpaper.presentation.fragment.ThemesFragment"
@@ -11,7 +11,8 @@
         tools:layout="@layout/fragment_themes" >
         <action
             android:id="@+id/action_themesFragment_to_imagesFragment"
-            app:destination="@id/imagesFragment" />
+            app:destination="@id/imagesFragment"
+            app:popUpTo="@id/themesFragment" />
     </fragment>
     <fragment
         android:id="@+id/imagesFragment"
@@ -23,7 +24,8 @@
             app:argType="string" />
         <action
             android:id="@+id/action_imagesFragment_to_singleImageFragment"
-            app:destination="@id/singleImageFragment" />
+            app:destination="@id/singleImageFragment"
+            app:popUpTo="@id/imagesFragment" />
     </fragment>
     <fragment
         android:id="@+id/singleImageFragment"
@@ -33,5 +35,14 @@
         <argument
             android:name="imageUrl"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.wallpaper.presentation.fragment.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_themesFragment"
+            app:destination="@id/themesFragment" />
     </fragment>
 </navigation>
