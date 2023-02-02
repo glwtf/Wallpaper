@@ -1,6 +1,5 @@
 package com.example.wallpaper.data
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.wallpaper.domain.WallpaperRepository
@@ -20,21 +19,15 @@ object WallpaperRepositoryImpl : WallpaperRepository {
         return ldImages
     }
 
-
-    override fun getImage() {
-        TODO("Not yet implemented")
-    }
-
-    override fun setWallpaper() {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun loadThemes() {
+    override suspend fun loadThemes(): Boolean {
         val loadThemes = LoadImageThemes()
         val themes = loadThemes()
-        ldThemes.value = themes
-        themes.forEach {
-            mapImages += it.themeName to it.hits
-        }
+        return if (themes.isNotEmpty()) {
+            ldThemes.value = themes
+            themes.forEach {
+                mapImages += it.themeName to it.hits
+            }
+            true
+        } else false
     }
 }
